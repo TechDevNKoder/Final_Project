@@ -83,8 +83,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'projectdb',
+        'USER': 'naval',
+        'PASSWORD': 'navalpass15',
+        'HOST': '192.168.64.93',
+        'PORT': '3306',
     }
 }
 
