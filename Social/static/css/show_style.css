@@ -1,0 +1,132 @@
+/* Basic reset and global styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #fff; /* Light background for the body */
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-1, .col-8, .col-4 {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+}
+
+.col-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+
+.col-1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%;
+}
+
+.col-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%;
+}
+
+/* Alert styling */
+.alert {
+    margin-right: -22.5rem;
+    background-color: #eee;
+    color: #333;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Rounded images for profiles */
+.rounded-circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid #ddd; /* subtle border for the profile picture */
+}
+
+/* Comments styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+}
+
+strong {
+    color: #007bff;
+    font-weight: normal;
+}
+
+em {
+    font-style: italic;
+    color: #666;
+    font-size: 12px;
+}
+
+/* Button styling */
+.btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .container {
+        width: 95%;
+    }
+}

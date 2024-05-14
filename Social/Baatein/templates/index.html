@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+    <title>Baatein</title>
+</head>
+
+<body class="body-full">
+    <nav>
+        <div class="container">
+            <div class="left-content">
+                <h2 class="log">
+                    Words.Conversations
+                </h2>
+            </div>
+            <div class="right-content">
+                <!--<div class="search">
+                    <a href="#home"><img src="{% static 'img/search.svg' %}"></a>
+                </div>-->
+                <div class="profile-picture">
+                    {% if request.user.profile.image %}
+                    <img src="{{ request.user.profile.image.url }}" alt="User profile picture" id="profileImg" onclick="toggleMenu()">
+                    {% else %}
+                    <img src="{% static 'img/profile-pic.jpg' %}" alt="User profile picture" id="profileImg" onclick="toggleMenu()">
+                    {% endif %}
+                </div>
+                <div class="sub-menu-wrap" id="submenu">
+                    <div class="sub-menu">
+                        <div class="sub-menu-link">
+                            <a href="{% url 'logout' %}">Logout</a>
+                            <span>></span>
+                        </div>
+                        <div class="sub-menu-link">
+                            <a href="{% url 'profile_update' %}">Update Profile</a>
+                            <span>></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container" id="blur">
+            <div class="left">
+                <div class="sidebar">
+                    <a class="menu-item active" href="{% url 'index' %}">
+                        <h3>Home</h3>
+                    </a>
+                    <a class="menu-item" href="{% url 'members' %}">
+                        <h3>Members</h3>
+                    </a>
+                    <a class="menu-item" href="{% url 'profile' request.user.id %}">
+                        <h3>My Profile</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="feeds">
+                    {% for talk in talks %}
+                    <div class="feed">
+                        <div class="feed-item">
+                            <div class="head">
+                                <div class="user">
+                                    <div class="profile-photo">
+                                        {% if talk.user.profile.image %}
+                                        <img src="{{ talk.user.profile.image.url }}" alt="Profile Picture">
+                                        {% else %}
+                                        <img src="{% static 'img/profile-pic.jpg' %}" alt="Profile Picture">
+                                        {% endif %}
+                                    </div>
+                                    <div class="info">
+                                        <a href="/profile/{{ talk.user.id }}"><h3>{{ talk.user.username }}</h3></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <p>{{ talk.body }}</p>
+                                {% if talk.image %}
+                                <img src="{{ talk.image.url }}" alt="Talk Image">
+                                {% endif %}
+                            </div>
+                            <div class="comments-section" style="margin-left: 20px;">
+                                <div class="comment-form">
+                                    <form method="POST" action="{% url 'comment_talk' talk.id %}">
+                                        {% csrf_token %}
+                                        <br>
+                                        <input type="text" name="body" placeholder=" Add a comment..." required>
+                                        <button type="submit" class="btn-comment">&gt</button>
+                                    </form>
+                                </div>
+                                {% if talk.comments.count != 0 %}
+                                <div class="comment-heading"><h4>Comments</h4></div>
+                                {% for comment in talk.comments %}
+                                <div class="comment">
+                                    <div class="profile-photo-comment" style="width: 30px; height: 30px;">
+                                        {% if comment.user.profile.image %}
+                                        <img src="{{ comment.user.profile.image.url }}" alt="Profile Picture" style="width: 100%;">
+                                        {% else %}
+                                        <img src="{% static 'img/profile-pic.jpg' %}" alt="Profile Picture" style="width: 100%;">
+                                        {% endif %}
+                                    </div>
+                                    <div class="comment-info">
+                                        <p><strong>{{ comment.user.username }}</strong>: {{ comment.body }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            <div class="right">
+                <div class="scroll-container">
+                   <div class="scroll-container">
+                    <div class="news-cards" style="width: 18rem;">
+                        <img src="{% static 'img/news-one.png' %}" class="news-card-img-top" alt="...">
+                        <div class="news-card-body">
+                        <p class="card-text">PhonePe carries over its dominance in UPI to online bill payments with a 50 percent market share, according to data from Bharat Bill Payment System website.</p>
+                        </div>
+                    </div>
+                    <div class="news-cards" style="width: 18rem;">
+                        <img src="{% static 'img/news-one.png' %}" class="news-card-img-top" alt="...">
+                        <div class="news-card-body">
+                        <p class="card-text">PhonePe carries over its dominance in UPI to online bill payments with a 50 percent market share, according to data from Bharat Bill Payment System website.</p>
+                        </div>
+                    </div>
+                    <div class="news-cards" style="width: 18rem;">
+                        <img src="{% static 'img/news-one.png' %}" class="news-card-img-top" alt="...">
+                        <div class="news-card-body">
+                        <p class="card-text">PhonePe carries over its dominance in UPI to online bill payments with a 50 percent market share, according to data from Bharat Bill Payment System website.</p>
+                        </div>
+                    </div>
+                    <div class="news-cards" style="width: 18rem;">
+                        <img src="{% static 'img/news-one.png' %}" class="news-card-img-top" alt="...">
+                        <div class="news-card-body">
+                        <p class="card-text">PhonePe carries over its dominance in UPI to online bill payments with a 50 percent market share, according to data from Bharat Bill Payment System website.</p>
+                        </div>
+                    </div>
+                    <div class="news-cards" style="width: 18rem;">
+                        <img src="{% static 'img/news-one.png' %}" class="news-card-img-top" alt="...">
+                        <div class="news-card-body">
+                        <p class="card-text">PhonePe carries over its dominance in UPI to online bill payments with a 50 percent market share, according to data from Bharat Bill Payment System website.</p>
+                        </div>
+                    </div>
+                    <div class="news-cards" style="width: 18rem;">
+                        <img src="{% static 'img/news-one.png' %}" class="news-card-img-top" alt="...">
+                        <div class="news-card-body">
+                        <p class="card-text">PhonePe carries over its dominance in UPI to online bill payments with a 50 percent market share, according to data from Bharat Bill Payment System website.</p>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="news-cards" style="width: 18rem;">
+                        <img src="{% static 'img/profile-pic.jpg' %}" class="news-card-img-top" alt="...">
+                        <div class="news-card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>-->
+                </div>
+                </div>
+
+            </div>
+            <div class="create">
+                <a onclick="toggle()"><label class="btn btn-primary" for="create-post">Post</label></a>
+            </div>
+        </div>
+    </main>
+    <div id="popup">
+        {% if form %}
+        <form method="POST" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.body.label_tag }}
+                {{ form.body }}
+            </div>
+            <div class="form-group">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+            <button type="submit" class="btn btn-primary">Post!</button>
+            <button id="close-button" class="btn btn-secondary" onclick="toggle()">Close</button>
+        </form>
+        {% endif %}
+    </div>
+    <script type="text/javascript">
+        function toggle() {
+            var blur = document.getElementById('blur');
+            blur.classList.toggle('active');
+            var popup = document.getElementById('popup');
+            popup.classList.toggle('active');
+            event.stopPropagation();
+        }
+
+        document.getElementById('profileImg').addEventListener('click', toggleMenu);
+ 
+        document.addEventListener('click', function(event) {
+            var submenu = document.getElementById('submenu');
+            var profileImg = document.getElementById('profileImg'); 
+            var isClickInside = profileImg.contains(event.target) || submenu.contains(event.target);
+
+            if (!isClickInside && submenu.classList.contains('open-menu')) {
+                submenu.classList.remove('open-menu');
+                var rightContent = document.querySelector('.right-content');
+                rightContent.classList.remove('shift-left');
+            }
+        });
+
+        function toggleMenu() {
+            var submenu = document.getElementById('submenu');
+            var rightContent = document.querySelector('.right-content');
+            submenu.classList.toggle('open-menu');
+            rightContent.classList.toggle('shift-left');
+        }
+
+        document.getElementById('profileImg').addEventListener('click', function(event) {
+        toggleMenu();
+        event.stopPropagation();
+        });
+
+    </script>
+</body>
+</html>

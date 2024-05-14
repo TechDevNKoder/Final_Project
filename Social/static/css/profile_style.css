@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --color-white: hsl(252,30%,100%);
+    --color-light: hsl(252,30%,95%);
+    --color-gray: hsl(252,15%,65%);
+    --color-primary: hsl(252,75%,60%);
+    --color-secondary: hsl(252,100%,90%);
+    --color-success: hsl(120,95%,65%);
+    --color-danger: hsl(0,95%,65%);
+    --color-dark: hsl(252,30%,17%);
+    --color-black: hsl(252,30%,10%);
+
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 2rem;
+    --card-padding: 1rem;
+
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
+}
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--color-dark);
+    background: var(--color-light);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.profile-picture {
+    width: 3.0rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-picture:hover{
+    transform: scale(1.05);
+    transition: all 300ms ease;
+    cursor: pointer;
+}
+
+
+img {
+    display: block;
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    padding: var(--btn-padding);
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 300ms ease;
+    font-size: 0.9rem;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+}
+
+.text-bold {
+    font-weight: 500;
+}
+
+.text-muted {
+    color: var(--color-gray);
+}
+
+nav {
+    width: 100%;
+    background: var(--color-white);
+    padding: 0.7rem 0;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .search{
+    width: 2.7rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+nav .search:hover {
+    opacity: 0.8;
+}
+
+nav .left-content {
+    flex: 1;
+    margin-left: -2rem;
+}
+
+nav .right-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: -15rem;
+    transition: transform 0.3s ease;
+}
+
+.right-content.shift-left {
+    transform: translateX(-150px); 
+}
+
+
+main {
+    position: relative;
+    top: 5.4rem;
+}
+
+
+main .container {
+    display: grid;
+    grid-template-columns: 18vh auto auto;
+    column-gap: 2rem;
+    position: relative;
+}
+
+main .container .left {
+    height: max-content;
+    position: sticky;
+    top: var(--sticky-top-left);
+    margin: 0;
+}
+
+main .container .middle{
+    margin-top: 1.5rem;
+}
+
+main .container .right{
+    margin-top: 2.5rem;
+    margin-right: -2rem;
+}
+
+main .container .main-content{
+    margin-top: 2.5rem;
+}
+
+.sub-menu-wrap { 
+    right: 0;  
+    width: auto; 
+    z-index: 20;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.open-menu {
+    max-height: 250px;
+}
+
+.sub-menu {
+    background: #fff;
+    padding: 10px; 
+}
+
+
+.sub-menu-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    font-size: 12px; 
+    cursor: pointer; 
+}
+
+:sub-menu-link:hover{
+    scale: 5;
+}
+
+.sub-menu-link span {
+    margin-left: 10px; 
+    font-size: 14px; 
+    transition: transform 0.3s; 
+}
+
+.sub-menu-link:hover span {
+    transform: translateX(5px); 
+}
+
+.left .sidebar {
+    margin-top: 2.5rem;
+    width: 12rem;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    margin-left: -3.5rem;
+}
+
+.left .sidebar .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 4rem;
+    padding-left: 1.5rem;
+    cursor: pointer;
+    transition: all 300ms ease;
+    position: relative;
+    text-decoration: none; 
+}   
+
+.left .sidebar .menu-item:hover {
+    background: var(--color-light);
+    transform: scale(1.05);
+    transition: all 300ms ease;
+    text-decoration: underline;
+}
+
+.left .sidebar i {
+    font-size: 1.4rem;
+    color: var(--color-white);
+    margin-right: 1rem;
+}
+
+.left .sidebar h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500; 
+    font-size: 1rem;
+    color: var(--color-dark);
+}
+
+.left .sidebar .active {
+    background: var(--color-light);
+}
+
+.left .sidebar .active i, 
+.left .sidebar .active h3 {
+    color: var(--color-primary);
+}
+
+.left .sidebar .active::before {
+    content: "";
+    display: block;
+    width: 0.3rem;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--color-primary);
+    border-top-left-radius: var(--card-border-radius); 
+}
+
+.left .sidebar .menu-item:first-child.active {
+    border-top-left-radius: var(--card-border-radius);
+}
+
+
+.middle .feeds .feed {
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    margin: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    padding: 15px; 
+}
+
+.feeds {
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-item {
+    margin-bottom: 20px; 
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo img {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.info h3 {
+    margin: 0;
+}
+
+
+
